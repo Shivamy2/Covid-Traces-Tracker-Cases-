@@ -139,7 +139,7 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
       alignment: Alignment.topRight,
       child: Container(
         margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-        width: MediaQuery.of(context).size.width / 1.5,
+        width: MediaQuery.of(context).size.width / 1.35,
         decoration: new BoxDecoration(
           color: color.cardDeathBg,
           borderRadius: new BorderRadius.only(
@@ -212,40 +212,55 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
             ),
           ),
           eachHeadDesign('Pie-Chart'),
-          PieChart(
-            dataMap: {
-              "Active": active == null ? 0.0 : active.toDouble(),
-              "Recover": recover == null ? 0.0 : recover.toDouble(),
-              "Deaths": deaths == null ? 0.0 : deaths.toDouble(),
-            },
-            animationDuration: Duration(milliseconds: 800),
-            chartLegendSpacing: 32,
-            chartRadius: MediaQuery.of(context).size.width,
-            colorList: [
-              color.cardActiveBg,
-              color.cardRecoverBg,
-              color.cardDeathBg,
-            ],
-            initialAngleInDegree: 0,
-            chartType: ChartType.disc,
-            ringStrokeWidth: 32,
-            legendOptions: LegendOptions(
-              showLegendsInRow: false,
-              legendPosition: LegendPosition.right,
-              showLegends: true,
-              legendShape: BoxShape.circle,
-              legendTextStyle: TextStyle(
-                fontWeight: FontWeight.bold,
+          Container(
+            decoration: new BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(1.0, 2.0),
+                    blurRadius: 15.0,
+                    color: Colors.grey,
+                  ),
+                ],
+                borderRadius: new BorderRadius.all(
+                  Radius.circular(100.0),
+                )),
+            width: MediaQuery.of(context).size.width,
+            child: PieChart(
+              dataMap: {
+                "Active": active == null ? 0.0 : active.toDouble(),
+                "Recover": recover == null ? 0.0 : recover.toDouble(),
+                "Deaths": deaths == null ? 0.0 : deaths.toDouble(),
+              },
+              animationDuration: Duration(milliseconds: 800),
+              chartLegendSpacing: 50,
+              chartRadius: MediaQuery.of(context).size.width,
+              colorList: [
+                color.cardActiveBg,
+                color.cardRecoverBg,
+                color.cardDeathBg,
+              ],
+              initialAngleInDegree: 0,
+              chartType: ChartType.disc,
+              ringStrokeWidth: 32,
+              legendOptions: LegendOptions(
+                showLegendsInRow: false,
+                legendPosition: LegendPosition.right,
+                showLegends: true,
+                legendShape: BoxShape.circle,
+                legendTextStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              chartValuesOptions: ChartValuesOptions(
+                showChartValueBackground: true,
+                showChartValues: true,
+                showChartValuesInPercentage: true,
+                showChartValuesOutside: false,
               ),
             ),
-            chartValuesOptions: ChartValuesOptions(
-              showChartValueBackground: true,
-              showChartValues: true,
-              showChartValuesInPercentage: true,
-              showChartValuesOutside: false,
-            ),
           ),
-          eachHeadDesign('Map- Affected Areas'),
+          eachHeadDesign('Map of Affected Areas'),
         ],
       ),
     );
