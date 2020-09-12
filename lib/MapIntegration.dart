@@ -150,31 +150,33 @@ class _MapIntegrationState extends State<MapIntegration> {
             ),
             height: MediaQuery.of(context).size.height / 1.5,
             alignment: Alignment.centerRight,
-            child: FlutterMap(
-              options: new MapOptions(
-                center: LatLng(22.5937, 78.9629),
-                zoom: 4.3,
-              ),
-              layers: [
-                new TileLayerOptions(
-                  urlTemplate:
-                      'https://api.mapbox.com/styles/v1/shivam7007/ckevbwl2u6ty11an4bfbicex7/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2hpdmFtNzAwNyIsImEiOiJja2VsMzRrcmcweW9vMnlwaXNiMzFrYjV2In0.CVRHP4CkMz_5UybuZ3CaIA',
-                  additionalOptions: {
-                    'acessToken':
-                        'pk.eyJ1Ijoic2hpdmFtNzAwNyIsImEiOiJja2V0bXl4OXIxbmRrMnRvZWdkaWM5a29zIn0.doc-sYseA4b-Z7ylnp0Ttg',
-                    'id': 'mapbox.mapbox-streets-v8',
-                  },
+            child: AbsorbPointer(
+              child: FlutterMap(
+                options: new MapOptions(
+                  center: LatLng(22.5937, 82.9629),
+                  zoom: 4.1,
                 ),
-                new MarkerLayerOptions(markers: [
-                  for (var index = 0; index < mapDataFinal.length; index++)
-                    if (redZoneData.contains(mapDataFinal[index]))
-                      mapDisplayData(index, Colors.red.withOpacity(0.8))
-                    else if (orangeZoneData.contains(mapDataFinal[index]))
-                      mapDisplayData(index, Colors.orange.withOpacity(0.8))
-                    else if (greenZoneData.contains(mapDataFinal[index]))
-                      mapDisplayData(index, Colors.green.withOpacity(0.8))
-                ]),
-              ],
+                layers: [
+                  new TileLayerOptions(
+                    urlTemplate:
+                        'https://api.mapbox.com/styles/v1/shivam7007/ckevbwl2u6ty11an4bfbicex7/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2hpdmFtNzAwNyIsImEiOiJja2VsMzRrcmcweW9vMnlwaXNiMzFrYjV2In0.CVRHP4CkMz_5UybuZ3CaIA',
+                    additionalOptions: {
+                      'acessToken':
+                          'pk.eyJ1Ijoic2hpdmFtNzAwNyIsImEiOiJja2V0bXl4OXIxbmRrMnRvZWdkaWM5a29zIn0.doc-sYseA4b-Z7ylnp0Ttg',
+                      'id': 'mapbox.mapbox-streets-v8',
+                    },
+                  ),
+                  new MarkerLayerOptions(markers: [
+                    for (var index = 0; index < mapDataFinal.length; index++)
+                      if (redZoneData.contains(mapDataFinal[index]))
+                        mapDisplayData(index, Colors.red.withOpacity(0.8))
+                      else if (orangeZoneData.contains(mapDataFinal[index]))
+                        mapDisplayData(index, Colors.orange.withOpacity(0.8))
+                      else if (greenZoneData.contains(mapDataFinal[index]))
+                        mapDisplayData(index, Colors.green.withOpacity(0.8))
+                  ]),
+                ],
+              ),
             ),
           ),
           Container(
