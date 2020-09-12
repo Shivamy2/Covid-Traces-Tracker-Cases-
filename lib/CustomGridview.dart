@@ -43,7 +43,7 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
   }
 
   Widget CustomCards(Color bgColor, Color frontColor, String cardIcons,
-      String cardTitle, String casesData, String fetchTime) {
+      String cardTitle, String casesData) {
     DateTime currentTime = new DateTime.now();
     var dtm = DateFormat('hh:mm:ss').format(currentTime);
     Card cards = new Card(
@@ -97,6 +97,9 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
               fontSize: 22.0,
               fontStyle: FontStyle.italic,
               color: frontColor,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'DancingScript',
+              letterSpacing: 1.5,
             ),
           ),
           Spacer(
@@ -117,11 +120,12 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
                 ),
                 Spacer(),
                 Text(
-                  dtm,
+                  total == null ? "..." : '$dtm',
                   style: new TextStyle(
-                    fontStyle: FontStyle.italic,
+                    // fontStyle: FontStyle.italic,
                     fontFamily: 'Satisfy',
                     fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
                     color: frontColor,
                   ),
                 ),
@@ -138,7 +142,7 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+        margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
         width: MediaQuery.of(context).size.width / 1.35,
         decoration: new BoxDecoration(
           color: color.cardDeathBg,
@@ -153,9 +157,9 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
             textString,
             style: TextStyle(
               color: color.cardDeathFront,
-              fontSize: 25.0,
+              fontSize: 23.0,
               fontWeight: FontWeight.bold,
-              fontFamily: 'satisfy',
+              fontFamily: 'DancingScript',
               height: 1.5,
             ),
           ),
@@ -182,7 +186,6 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
                   'assets/images/heart.png',
                   'Total',
                   total == null ? loadMessage : '$total',
-                  '12:00 pm',
                 ),
                 CustomCards(
                   color.cardDeathBg,
@@ -190,7 +193,6 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
                   'assets/images/deaths.png',
                   'Deaths',
                   deaths == null ? loadMessage : '$deaths',
-                  '12:00 pm',
                 ),
                 CustomCards(
                   color.cardActiveBg,
@@ -198,7 +200,6 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
                   'assets/images/active.png',
                   'Active',
                   active == null ? loadMessage : '$active',
-                  '12:00 pm',
                 ),
                 CustomCards(
                   color.cardRecoverBg,
@@ -206,7 +207,6 @@ class _MyCustomGridviewState extends State<MyCustomGridview> {
                   'assets/images/recover.png',
                   'Recover',
                   recover == null ? loadMessage : '$recover',
-                  '12:00 pm',
                 ),
               ],
             ),

@@ -52,7 +52,6 @@ class _MapIntegrationState extends State<MapIntegration> {
     [26.8467, 80.9462],
     [22.9868, 87.8550]
   ];
-  int n = 2;
   Map mapData;
   var totalConfirmed;
   var dataCalc;
@@ -83,12 +82,6 @@ class _MapIntegrationState extends State<MapIntegration> {
             }
           }
         }
-        print(mapDataFinal);
-        print(mapDataFinal.length);
-        print(latlong.length);
-        print(redZoneData);
-        print(orangeZoneData);
-        print(greenZoneData);
       });
     } else {
       throw Exception('loading failed...');
@@ -101,10 +94,54 @@ class _MapIntegrationState extends State<MapIntegration> {
     super.initState();
   }
 
+  mapDisplayData(int index, Color spotColor) {
+    var marker = new Marker(
+      width: 10.0,
+      height: 10.0,
+      point: new LatLng(latlong[index][0], latlong[index][1]),
+      builder: (ctx) => new Container(
+        height: 3,
+        width: 3,
+        decoration: new BoxDecoration(
+          shape: BoxShape.circle,
+          color: spotColor,
+        ),
+      ),
+    );
+    return marker;
+  }
+
+  Widget belowMapText(String text, Color textColor) {
+    return Row(
+      children: [
+        Container(
+          height: 15,
+          width: 15,
+          decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+            color: textColor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 5.0),
+          child: Text(
+            text,
+            style: new TextStyle(
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+              fontSize: 15.0,
+              fontFamily: 'satisfy',
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 1.3,
+      height: MediaQuery.of(context).size.height / 1.35,
       child: Column(
         children: [
           Container(
@@ -130,57 +167,38 @@ class _MapIntegrationState extends State<MapIntegration> {
                 ),
                 new MarkerLayerOptions(markers: [
                   for (var index = 0; index < mapDataFinal.length; index++)
-                    for (var i = 0; i <= 1; i++)
-                      if (redZoneData.contains(mapDataFinal[i]))
-                        new Marker(
-                          width: 10.0,
-                          height: 10.0,
-                          point:
-                              new LatLng(latlong[index][0], latlong[index][1]),
-                          builder: (ctx) => new Container(
-                            height: 3,
-                            width: 3,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red.withOpacity(0.2),
-                            ),
-                          ),
-                        )
-                      else if (orangeZoneData.contains(mapDataFinal[i]))
-                        new Marker(
-                          width: 10.0,
-                          height: 10.0,
-                          point:
-                              new LatLng(latlong[index][0], latlong[index][1]),
-                          builder: (ctx) => new Container(
-                            height: 3,
-                            width: 3,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.orange.withOpacity(0.2),
-                            ),
-                          ),
-                        )
-                      else if (greenZoneData.contains(mapDataFinal[i]))
-                        new Marker(
-                          width: 20.0,
-                          height: 10.0,
-                          point:
-                              new LatLng(latlong[index][0], latlong[index][1]),
-                          builder: (ctx) => new Container(
-                            height: 3,
-                            width: 3,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.green.withOpacity(0.2),
-                            ),
-                          ),
-                        )
+                    if (redZoneData.contains(mapDataFinal[index]))
+                      mapDisplayData(index, Colors.red.withOpacity(0.8))
+                    else if (orangeZoneData.contains(mapDataFinal[index]))
+                      mapDisplayData(index, Colors.orange.withOpacity(0.8))
+                    else if (greenZoneData.contains(mapDataFinal[index]))
+                      mapDisplayData(index, Colors.green.withOpacity(0.8))
                 ]),
               ],
             ),
           ),
-          Text('$dataCalc'),
+          Container(
+            decoration: new BoxDecoration(
+              color: Colors.grey[300],
+              border: Border.all(
+                color: Colors.red,
+                width: 0.5,
+              ),
+              borderRadius: new BorderRadius.only(
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0)),
+            ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                belowMapText('Green Zone', Colors.green),
+                Spacer(),
+                belowMapText('Orange Zone', Colors.orange),
+                Spacer(),
+                belowMapText('Red Zone', Colors.red),
+              ],
+            ),
+          ),
         ],
       ),
     );
