@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:CovidTracker/customappbar.dart';
 
 import 'CurePage.dart';
+import 'InformationPage.dart';
 
 Constraints color = new Constraints();
 
@@ -18,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final navigations = [
     CureInfoPage(),
-    MyCustomBody(),
+    InformationPage(),
     MyCustomBody(),
     MyCustomBody(),
     MyCustomBody(),
