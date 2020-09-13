@@ -124,6 +124,14 @@ class _MyCustomBodyState extends State<MyCustomBody> {
           ),
           MyCustomGridview(),
           MapIntegration(),
+          SizedBox(height: 15.0),
+          Text(
+            '@2020 Covid Traces All Rights Reserved',
+            style: TextStyle(
+              fontFamily: 'satisfy',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

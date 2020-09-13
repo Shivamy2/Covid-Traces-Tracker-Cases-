@@ -1,6 +1,6 @@
+import 'package:CovidTracker/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,6 +9,7 @@ void main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Covid Traces(Tracker + Cases)',
-    home: HomePage(),
+    initialRoute: '/home',
+    onGenerateRoute: RouteGenerator.generateRoute,
   ));
 }

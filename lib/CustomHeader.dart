@@ -36,6 +36,7 @@ class CustomBottomBar extends PreferredSize {
       height: preferredSize.height,
       child: child,
       alignment: Alignment.center,
+      color: Colors.grey[400],
     );
   }
 }

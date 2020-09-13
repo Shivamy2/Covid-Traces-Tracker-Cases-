@@ -4,11 +4,22 @@ import 'constraints.dart';
 
 Constraints color = new Constraints();
 
-class CustomAppBar extends StatelessWidget {
-  Widget IconsContainer(String imgsrc, String message) {
+class CustomAppBar extends StatefulWidget {
+  String appBarIconText1;
+  String appBarIconText2;
+  String path;
+  String text;
+  CustomAppBar(
+      this.appBarIconText1, this.appBarIconText2, this.path, this.text);
+  @override
+  _CustomAppBarState createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  Widget IconsContainer(String imgsrc, String path) {
     return InkWell(
       onTap: () {
-        print('$message');
+        Navigator.of(context).pushNamed(path);
       },
       child: Container(
         height: 55.0,
@@ -29,8 +40,6 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return CustomHeader(
       height: MediaQuery.of(context).size.height / 13.0,
       child: Column(
@@ -39,10 +48,10 @@ class CustomAppBar extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                IconsContainer('assets/images/menu.png', 'menu clicked...'),
+                IconsContainer(widget.appBarIconText1, widget.path),
                 Spacer(),
                 Text(
-                  'CoVID TRACES',
+                  widget.text,
                   style: TextStyle(
                     color: color.writingSubHead,
                     fontSize: MediaQuery.of(context).size.width / 13,
@@ -51,7 +60,7 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-                IconsContainer('assets/images/refresh.png', 'refreshing...'),
+                IconsContainer(widget.appBarIconText2, widget.path),
               ],
             ),
           ),
