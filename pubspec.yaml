@@ -30,8 +30,12 @@ dependencies:
   curved_navigation_bar: ^0.3.3
   http: ^0.12.2
   pie_chart: ^4.0.1
+  firebase_core: ^0.5.0
   intl: ^0.16.1
   flutter_map: ^0.10.1+1
+  cloud_firestore: ^0.14.0+2
+  firebase_auth:
+  google_sign_in: ^4.5.3
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +72,5 @@ flutter:
     - family: Satisfy
       fonts:
         - asset: assets/fonts/Satisfy/Satisfy-Regular.ttf
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

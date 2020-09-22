@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "530794579419",
+    "firebase_url": "https://databasetracker-4a233.firebaseio.com",
+    "project_id": "databasetracker-4a233",
+    "storage_bucket": "databasetracker-4a233.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530794579419:android:5e21f6a5b5328c4b5d53fe",
+        "android_client_info": {
+          "package_name": "com.example.CovidTracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530794579419-9esmo7lj3oqmr5j17v9j4dpi78gpqlc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDDKYQY-32-mbRYQZHufttpfpT8bB6b9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530794579419-9esmo7lj3oqmr5j17v9j4dpi78gpqlc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

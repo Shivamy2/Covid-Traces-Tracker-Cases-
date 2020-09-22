@@ -1,9 +1,11 @@
+import 'package:CovidTracker/Auth/signInScreen.dart';
 import 'package:CovidTracker/CustomHeader.dart';
 import 'package:CovidTracker/body.dart';
 import 'package:CovidTracker/constraints.dart';
 import 'package:flutter/material.dart';
 import 'package:CovidTracker/customappbar.dart';
 
+import 'ContactUsForm.dart';
 import 'CurePage.dart';
 import 'InformationPage.dart';
 
@@ -21,26 +23,37 @@ class _HomePageState extends State<HomePage> {
     CureInfoPage(),
     InformationPage(),
     MyCustomBody(),
-    MyCustomBody(),
-    MyCustomBody(),
+    ContactUsForm(),
+    SignInScreen(),
   ];
   int currentIndex = 2;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            CustomAppBar('assets/images/refresh.png', 'assets/images/menu.png',
-                '/home', 'Covid TRACES'),
-            SizedBox(
-              height: MediaQuery.of(context).size.height -
-                  CustomHeader().preferredSize.height -
-                  CustomBottomBar().preferredSize.height -
-                  31.8,
-              child: navigations[currentIndex],
+        body: GestureDetector(
+          onTap: () {
+            FocusScopeNode focusScope = FocusScope.of(context);
+            if (!focusScope.hasPrimaryFocus &&
+                focusScope.focusedChild != null) {
+              FocusManager.instance.primaryFocus.unfocus();
+            }
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomAppBar('assets/images/refresh.png',
+                    'assets/images/menu.png', '/home', 'Covid TRACES'),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height -
+                      CustomHeader().preferredSize.height -
+                      CustomBottomBar().preferredSize.height -
+                      31.8,
+                  child: navigations[currentIndex],
+                ),
+              ],
             ),
-          ],
+          ),
         ),
         bottomNavigationBar: CustomBottomBar(
           height: MediaQuery.of(context).size.height / 14,
