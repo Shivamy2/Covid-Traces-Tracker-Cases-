@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 CustomAppBar('assets/images/refresh.png',
-                    'assets/images/menu.png', '/home', 'Covid TRACES'),
+                    'assets/images/refresh.png', '/home', 'Covid TRACES'),
                 SizedBox(
                   height: MediaQuery.of(context).size.height -
                       CustomHeader().preferredSize.height -
